@@ -1,4 +1,4 @@
-# [CS2] Auto-Delete-Logs (1.0.0)
+# [CS2] Auto-Delete-Logs (1.0.1)
 
 ### Auto Delete Logs Files
 
@@ -17,6 +17,9 @@
   //Delete Files Over X Days in csgo/backup_roundXX.txt
   "BackupRoundMoreThanXdaysOld": 0,
   
+  //Delete Demo Over X Days in csgo/XXXXXXX.dem
+  "DemoMoreThanXdaysOld": 0,
+  
 //-----------------------------------------------------------------------------------------
   "ConfigVersion": 1
 }
@@ -25,6 +28,10 @@
 
 ## .:[ Change Log ]:.
 ```
+(1.0.1)
+-Fix Some Bugs
+-Added "DemoMoreThanXdaysOld"
+
 (1.0.0)
 -Initial Release
 ```
