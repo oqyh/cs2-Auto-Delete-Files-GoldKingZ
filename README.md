@@ -1,4 +1,4 @@
-# [CS2] Auto-Delete-Logs (1.0.1)
+# [CS2] Auto-Delete-Logs (1.0.2)
 
 ### Auto Delete Logs Files
 
@@ -11,16 +11,21 @@
 ## .:[ Configuration ]:.
 ```json
 {
-  //Delete Files Over X Days in csgo/addons/counterstrikesharp/logs/
+  "CounterstrikeSharpPath": "csgo/addons/counterstrikesharp/logs/",
   "CounterstrikeSharpMoreThanXdaysOld": 0,
   
-  //Delete Files Over X Days in csgo/backup_roundXX.txt
+//-----------------------------------------------------------------------------------------
+
+  "BackupRoundPath": "csgo/",
   "BackupRoundMoreThanXdaysOld": 0,
   
-  //Delete Demo Over X Days in csgo/XXXXXXX.dem
+//-----------------------------------------------------------------------------------------
+
+  "DemoPath": "csgo/",
   "DemoMoreThanXdaysOld": 0,
   
 //-----------------------------------------------------------------------------------------
+
   "ConfigVersion": 1
 }
 ```
@@ -28,6 +33,11 @@
 
 ## .:[ Change Log ]:.
 ```
+(1.0.2)
+-Added "CounterstrikeSharpMoreThanXdaysOld"
+-Added "BackupRoundPath"
+-Added "DemoPath"
+
 (1.0.1)
 -Fix Some Bugs
 -Added "DemoMoreThanXdaysOld"
