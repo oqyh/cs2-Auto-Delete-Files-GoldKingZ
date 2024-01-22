@@ -1,19 +1,25 @@
 using System.Text.Json.Serialization;
+using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 
 namespace Auto_Delete_Logs;
 
 public class AutoDeleteLogsConfig : BasePluginConfig
 {
+    [JsonPropertyName("CounterstrikeSharpPath")] public string CounterstrikeSharpPath { get; set; } = "csgo/addons/counterstrikesharp/logs/";
     [JsonPropertyName("CounterstrikeSharpMoreThanXdaysOld")] public int CounterstrikeSharpMoreThanXdaysOld { get; set; } = 0;
+
+    [JsonPropertyName("BackupRoundPath")] public string BackupRoundPath { get; set; } = "csgo/";
     [JsonPropertyName("BackupRoundMoreThanXdaysOld")] public int BackupRoundMoreThanXdaysOld { get; set; } = 0;
+    
+    [JsonPropertyName("DemoPath")] public string DemoPath { get; set; } = "csgo/";
     [JsonPropertyName("DemoMoreThanXdaysOld")] public int DemoMoreThanXdaysOld { get; set; } = 0;
 }
 
 public class AutoDeleteLogs : BasePlugin, IPluginConfig<AutoDeleteLogsConfig>
 {
     public override string ModuleName => "Auto Delete Logs";
-    public override string ModuleVersion => "1.0.1";
+    public override string ModuleVersion => "1.0.2";
     public override string ModuleAuthor => "Gold KingZ";
     public override string ModuleDescription => "Auto Delete Logs Files";
     public AutoDeleteLogsConfig Config { get; set; } = new AutoDeleteLogsConfig();
@@ -49,12 +55,11 @@ public class AutoDeleteLogs : BasePlugin, IPluginConfig<AutoDeleteLogsConfig>
         try
         {
             string folderPath = Path.Combine(ModuleDirectory, "../../plugins");
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 4; i++)
             {
                 folderPath = Path.Combine(folderPath, "..");
             }
-            string LOGS = Path.Combine(folderPath, "logs");
-
+            string LOGS = Path.Combine(folderPath, Config.CounterstrikeSharpPath);
             if (Directory.Exists(LOGS))
             {
                 string[] files = Directory.GetFiles(LOGS);
@@ -88,29 +93,32 @@ public class AutoDeleteLogs : BasePlugin, IPluginConfig<AutoDeleteLogsConfig>
         try
         {
             string folderPath = Path.Combine(ModuleDirectory, "../../plugins");
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 folderPath = Path.Combine(folderPath, "..");
             }
-
-            string[] files = Directory.GetFiles(folderPath, "backup_round*.txt");
-
-            DateTime cutoffDate = DateTime.Now.AddDays(-Config.BackupRoundMoreThanXdaysOld);
-
-            foreach (string file in files)
+            string backup = Path.Combine(folderPath, Config.BackupRoundPath);
+            if (Directory.Exists(backup))
             {
-                try
-                {
-                    DateTime lastWriteTime = File.GetLastWriteTime(file);
+                string[] files = Directory.GetFiles(backup, "backup_round*.txt");
 
-                    if (lastWriteTime < cutoffDate)
-                    {
-                        File.Delete(file);
-                    }
-                }
-                catch (Exception ex)
+                DateTime cutoffDate = DateTime.Now.AddDays(-Config.BackupRoundMoreThanXdaysOld);
+
+                foreach (string file in files)
                 {
-                    Console.WriteLine($"Error deleting file {file}: {ex.Message}");
+                    try
+                    {
+                        DateTime lastWriteTime = File.GetLastWriteTime(file);
+
+                        if (lastWriteTime < cutoffDate)
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error deleting file {file}: {ex.Message}");
+                    }
                 }
             }
         }
@@ -125,29 +133,32 @@ public class AutoDeleteLogs : BasePlugin, IPluginConfig<AutoDeleteLogsConfig>
         {
             string folderPath = Path.Combine(ModuleDirectory, "../../plugins");
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 folderPath = Path.Combine(folderPath, "..");
             }
-
-            string[] files = Directory.GetFiles(folderPath, "*.dem");
-
-            DateTime cutoffDate = DateTime.Now.AddDays(-Config.DemoMoreThanXdaysOld);
-
-            foreach (string file in files)
+            string demo = Path.Combine(folderPath, Config.DemoPath);
+            if (Directory.Exists(demo))
             {
-                try
-                {
-                    DateTime lastWriteTime = File.GetLastWriteTime(file);
+                string[] files = Directory.GetFiles(demo, "*.dem");
 
-                    if (lastWriteTime < cutoffDate)
-                    {
-                        File.Delete(file);
-                    }
-                }
-                catch (Exception ex)
+                DateTime cutoffDate = DateTime.Now.AddDays(-Config.DemoMoreThanXdaysOld);
+
+                foreach (string file in files)
                 {
-                    Console.WriteLine($"Error deleting file {file}: {ex.Message}");
+                    try
+                    {
+                        DateTime lastWriteTime = File.GetLastWriteTime(file);
+
+                        if (lastWriteTime < cutoffDate)
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error deleting file {file}: {ex.Message}");
+                    }
                 }
             }
         }
