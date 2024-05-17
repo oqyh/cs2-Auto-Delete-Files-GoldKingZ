@@ -32,7 +32,7 @@
 ## .:[ Configuration AutoDelete ]:.
 
 > [!CAUTION]
-> Config Located In ..\addons\counterstrikesharp\plugins\Auto-Delete-Files-GoldKingZ\config\AutoDelete_Settings.json                                          
+> Config Located In ..\addons\counterstrikesharp\plugins\Auto-Delete-Files-GoldKingZ\config\AutoDelete_Settings.json                                                                                                     
 >
                                                                                                                   
 ```
