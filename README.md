@@ -1,38 +1,59 @@
-# [CS2] Auto-Delete-Logs (1.0.2)
+# [CS2] Auto-Delete-Files-GoldKingZ (1.0.3)
 
-### Auto Delete Logs Files
+### Auto Delete Files
+
+![2024_05_17_04_10_27_Counter_Strike_2](https://github.com/oqyh/cs2-Auto-Delete-Files-GoldKingZ/assets/48490385/3440b2ea-4b51-4fad-8e42-e201f2919f6d)
+
 
 ## .:[ Dependencies ]:.
 [Metamod:Source (2.x)](https://www.sourcemm.net/downloads.php/?branch=master)
 
 [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp/releases)
 
+[Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json)
+
 
 ## .:[ Configuration ]:.
+
+> [!CAUTION]
+> Config Located In ..\addons\counterstrikesharp\plugins\Auto-Delete-Files-GoldKingZ\config\config.json                                           
+>
+
 ```json
 {
-  "CounterstrikeSharpPath": "csgo/addons/counterstrikesharp/logs/",
-  "CounterstrikeSharpMoreThanXdaysOld": 0,
-  
-//-----------------------------------------------------------------------------------------
 
-  "BackupRoundPath": "csgo/",
-  "BackupRoundMoreThanXdaysOld": 0,
-  
-//-----------------------------------------------------------------------------------------
+  //Enable Send Error/Debug Logs To Server Console?
+  "SendErrorLogsToServerConsole": false,
 
-  "DemoPath": "csgo/",
-  "DemoMoreThanXdaysOld": 0,
-  
-//-----------------------------------------------------------------------------------------
-
-  "ConfigVersion": 1
 }
 ```
 
 
+## .:[ Configuration AutoDelete ]:.
+
+> [!CAUTION]
+> Config Located In ..\addons\counterstrikesharp\plugins\Auto-Delete-Files-GoldKingZ\config\AutoDelete_Settings.json                                          
+>
+                                                                                                                  
+```
+
+"Delete_Files":  = File Name (* Means Any) 
+
+"Delete_OlderThanXDays": Delete "Delete_Files" Older Than X Days 
+
+"Delete_Path": Folder Path
+
+```
+
+
+
 ## .:[ Change Log ]:.
 ```
+(1.0.3)
+-Upgrade Net.7 To Net.8
+-Rework Auto Delete Files
+-Added SendErrorLogsToServerConsole
+
 (1.0.2)
 -Added "CounterstrikeSharpMoreThanXdaysOld"
 -Added "BackupRoundPath"
