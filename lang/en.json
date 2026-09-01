@@ -1,0 +1,4 @@
+{
+    "PrintToChatToPlayer.ReloadPlugin.Not.Allowed": "{green}[Auto Delete] {darkred}You Dont Have Permission",
+    "PrintToChatToPlayer.ReloadPlugin.Successfully": "{green}[Auto Delete] {grey}Plugin Reloaded {lime}Successfully"
+}
